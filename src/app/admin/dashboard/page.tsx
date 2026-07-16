@@ -148,11 +148,27 @@ export default function AdminDashboard() {
                                     exit={{ height: 0, opacity: 0 }}
                                     style={{ overflow: 'hidden' }}
                                   >
-                                    {daySessions.map((session: any, idx: number) => (
-                                      <div key={idx} className={styles.summary}>
-                                        {session.summary ? session.summary : 'No detailed report uploaded for this session.'}
-                                      </div>
-                                    ))}
+                                    {daySessions.map((session: any, idx: number) => {
+                                      const start = new Date(session.startTime)
+                                      const end = session.endTime ? new Date(session.endTime) : null
+                                      const durationMs = end ? end.getTime() - start.getTime() : 0
+                                      const hours = Math.floor(durationMs / 3600000)
+                                      const minutes = Math.floor((durationMs % 3600000) / 60000)
+                                      const seconds = Math.floor((durationMs % 60000) / 1000)
+                                      
+                                      return (
+                                        <div key={idx} className={styles.summary} style={{ marginBottom: '1rem' }}>
+                                          <div style={{ color: '#fff', borderBottom: '1px solid #333', paddingBottom: '0.5rem', marginBottom: '1rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                                            <div><strong>Start Time:</strong> {start.toLocaleString()}</div>
+                                            <div><strong>End Time:</strong> {end ? end.toLocaleString() : 'Active...'}</div>
+                                            <div><strong>Total Duration:</strong> {end ? `${hours}h ${minutes}m ${seconds}s` : 'Ongoing'}</div>
+                                          </div>
+                                          <div>
+                                            {session.summary ? session.summary : 'No detailed report uploaded for this session.'}
+                                          </div>
+                                        </div>
+                                      )
+                                    })}
                                   </motion.div>
                                 )}
                               </AnimatePresence>
