@@ -22,7 +22,7 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 }
 
@@ -42,12 +42,49 @@
 
 .listItem {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
   padding: 1rem;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.userHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dateList {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dateItem {
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.dateItem:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dateHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .badge {
@@ -55,8 +92,16 @@
   border-radius: 999px;
   font-size: 0.8rem;
   font-weight: 600;
-  background: var(--primary);
   color: white;
+}
+
+.badgePresent {
+  background: var(--success);
+}
+
+.badgeAbsent {
+  background: var(--danger);
+  opacity: 0.8;
 }
 
 .dangerBtn {
@@ -79,22 +124,16 @@
   margin-top: 1rem;
 }
 
-.sessionCard {
-  padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .summary {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: #111;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.5;
-  color: #ccc;
+  color: #00ff00;
+  white-space: pre-wrap;
+  font-family: monospace;
+  overflow-x: auto;
+  border: 1px solid #333;
 }

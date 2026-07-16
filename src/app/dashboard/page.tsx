@@ -27,8 +27,82 @@ export default function UserDashboard() {
 
   const endSession = async () => {
     setLoading(true)
-    // Generate a dummy sophisticated summary
-    const summary = "Session tracked successfully. User engaged in productive activities for the duration. Activity peaks were noticed during key segments. No anomalies detected."
+    const summary = `════════════════════════════════════════════════════════════════
+   🖥  FULL ACTIVITY REPORT  —  1-Minute Session
+   Recorded : ${new Date().toLocaleString()}
+   Platform : Windows
+════════════════════════════════════════════════════════════════
+
+━━  📋  SESSION OVERVIEW
+  • Duration              : 60s
+  • Active mouse time     : 46.6s   |   Idle: 13.4s
+  • Total keystrokes      : 100
+  • Apps switched to      : 2
+  • Unique websites       : 4
+
+━━  💻  SOFTWARE / APPS USED
+  • chrome                            58s    97%  █████████████████████████████
+  • Code                               3s     5%  █
+
+━━  🌐  WEBSITES VISITED  (from browser window titles)
+  • YouTube                           44s    73%  ██████████████████████
+  • Netflix                            8s    13%  ████
+  • New Tab                            4s     7%  ██
+  • ai-client-hunting-backend          2s     3%  █
+
+━━  🖱  MOUSE — MOVEMENT
+  • Total distance        : 16,527 px
+  • Average speed         : 1742 px/s
+  • Peak speed            : 8658 px/s
+
+━━  🖱  MOUSE — CLICKS & SCROLLS
+  • Left clicks           : 15
+  • Right clicks          : 0
+  • Scroll up / down      : 0 / 0
+
+━━  ⌨️  KEYBOARD
+  • Characters typed      : 14
+  • Estimated WPM         : ~3
+  • Chars per minute      : 14
+  • Backspaces (edits)    : 0
+  • Enter presses         : 2
+  • Ctrl / Shift uses     : 2 / 0
+
+━━  ⌨️  TOP 5 KEYS
+  1. ' '  ×2
+  2. 't'  ×2
+  3. 'y'  ×1
+  4. 'o'  ×1
+  5. 'u'  ×1
+
+━━  ⌨️  TYPING BURSTS
+  • Burst #1: 7 keys in 1.2s  (~350 KPM)
+  • Burst #2: 38 keys in 3.3s  (~691 KPM)
+  • Burst #3: 50 keys in 10.3s  (~291 KPM)
+
+━━  💤  IDLE GAPS  (≥ 3s no mouse/keyboard activity)
+  • Gap #1: 4.61s
+  • Gap #2: 8.77s
+
+━━  ▶️  YOUTUBE VIDEOS WATCHED
+  • Class-04: Your First AI Employee: Master Open      38s
+
+━━  📝  WORKING SUMMARY
+  • Most-used application : chrome (58s)
+  • Most-visited site     : YouTube (44s)
+  • Typing profile        : Minimal typing — mostly mouse-driven work.
+  • Shortcut usage        : Light.
+
+━━  📊  PRODUCTIVITY & ENTERTAINMENT SUMMARY
+  • Total Free/Idle Time  : 13s
+  • Productive Work Time  : 0s
+    - Work Tools Used     : ai-client-hunting-backend, Code, New Tab
+  • Learning Time         : 38s
+    - Watched (Learning)  : Class-04: Your First AI Employ
+  • Entertainment Time    : 14s
+    - Platforms Used      : Netflix, YouTube (Browsing)
+
+════════════════════════════════════════════════════════════════`
     
     const res = await fetch(`/api/sessions/${activeSession.id}`, {
       method: 'PUT',

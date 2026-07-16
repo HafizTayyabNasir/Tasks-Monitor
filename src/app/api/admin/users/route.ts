@@ -5,7 +5,15 @@ import bcrypt from 'bcryptjs'
 export async function GET() {
   try {
     const users = await prisma.user.findMany({
-      select: { id: true, username: true, name: true, createdAt: true },
+      select: { 
+        id: true, 
+        username: true, 
+        name: true, 
+        createdAt: true,
+        sessions: {
+          orderBy: { startTime: 'desc' }
+        }
+      },
       orderBy: { createdAt: 'desc' }
     })
     return NextResponse.json(users)
